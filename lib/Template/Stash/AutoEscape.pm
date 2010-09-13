@@ -2,7 +2,7 @@ package Template::Stash::AutoEscape;
 
 use strict;
 use warnings;
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Template::Config;
 use base ($Template::Config::STASH, 'Class::Data::Inheritable');
@@ -187,8 +187,14 @@ default is raw, you can get not escaped value from [% value.raw %]
         escape_method => sub { my $text = shift; ... ; return $text }
     })
   });
-                
 
+=item ignore_escape  
+
+  my $stash = Template::Stash::AutoEscape->new({ignore_escape => [qw(include_html include_raw my_escape_func)], ... );
+
+  You can disable auto-escape for some value or TT-Macro.
+  For example: include other component, for output safety html, using other escape method, etc.
+  
 =back
 
 =head2 class_for
